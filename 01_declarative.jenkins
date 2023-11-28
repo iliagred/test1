@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "\033[38;5;46m--- Woo hoo! We are building some imaginary stuff on the ${env.BRANCH_NAME} branch\033[0m"
+                echo "Woo hoo! We are building some imaginary stuff on the ${env.BRANCH_NAME} branch"
                 // To play around with the "real build", uncomment below
                 // sh './mvnw clean package'
             }
@@ -15,14 +15,14 @@ pipeline {
         stage('Test performance') {
             when { branch 'perf-*' }
             steps {
-                echo '\033[38;5;165m--- Running performance tests\033[0m'
+                echo 'Running performance tests'
             }
         }
 
         stage('Echo on main') {
             when { branch 'main' }
             steps {
-                echo '\033[38;5;81m--- Echo on the main branch\033[0m'
+                echo 'Echo on the main branch'
             }
         }
     }
