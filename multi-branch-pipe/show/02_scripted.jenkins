@@ -1,0 +1,25 @@
+node {
+    stage('Build') {
+        ansiColor('xterm') {
+            echo "\033[38;5;46m--- Woo hoo! We are building some imaginary stuff on the ${env.BRANCH_NAME} branch\033[0m"
+        }
+    }
+
+    stage('Test performance') {
+        ansiColor('xterm') {
+            if (env.BRANCH_NAME ==~ /perf-.*/) {
+                echo '\033[38;5;165m--- Running performance tests\033[0m'
+            }
+        }
+    }
+
+    stage('Echo on main') {
+        ansiColor('xterm') {
+            if (env.BRANCH_NAME == 'main') {
+                echo '\033[38;5;81m--- Echo on the main branch\033[0m'
+            } else {
+                echo '\033[38;5;1m--- This is NOT the main branch\033[0m'
+            }
+        }
+    }
+}

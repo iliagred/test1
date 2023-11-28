@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    options {
+        ansiColor('xterm')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "\033[38;5;46m--- Woo hoo! We are building some imaginary stuff on the ${env.BRANCH_NAME} branch\033[0m"
+                // To play around with the "real build", uncomment below
+                // sh './mvnw clean package'
+            }
+        }
+
+        stage('Test performance') {
+            when { branch 'perf-*' }
+            steps {
+                echo '\033[38;5;165m--- Running performance tests\033[0m'
+            }
+        }
+
+        stage('Echo on main') {
+            when { branch 'main' }
+            steps {
+                echo '\033[38;5;81m--- Echo on the main branch\033[0m'
+            }
+        }
+    }
+}
